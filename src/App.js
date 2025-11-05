@@ -118,20 +118,20 @@ const SolarPortfolio = () => {
             title: 'Mes Projets',
             subtitle: 'Réalisations & Expérimentations',
             description: 'Des projets diversifiés mêlant créativité et expertise technique',
-            tags: ['Jeux Vidéo', 'IA', 'Web', 'Innovation'],
+            tags: ['Cloud', 'IA', 'Web', 'Innovation'],
             details: 'Portfolio varié couvrant le développement de jeux vidéo, l\'intelligence artificielle et le web. Chaque projet est une opportunité d\'apprendre et de repousser mes limites.',
             highlights: [
                 '🎮 Mini-jeux 2D/3D - Unity, Unreal Engine et Roblox (équipe & solo)',
                 '🌐 Sites web interactifs - Plateformes dynamiques avec gestion de contenu',
                 '🎤 IA reconnaissance vocale - Interprétation de commandes vocales',
                 '🚀 Projets innovants - Machine learning et vision par ordinateur',
-                '💡 Objectif: Créer ma startup tech dans l\'IA ou le jeu vidéo'
+
             ]
         },
         contact: {
             title: 'Contactez-Moi',
             subtitle: 'En recherche d\'alternance 2025-2026',
-            description: 'Disponible pour une alternance en développement, IA ou cybersécurité',
+            description: 'Disponible pour une alternance selon vos besoins',
             tags: ['Alternance', 'Stage', 'Projets', 'Collaboration'],
             details: 'Recherche activement une alternance pour l\'année 2025-2026 (rythme 4 semaines entreprise / 2 semaines école). Ouvert aux opportunités en développement logiciel, intelligence artificielle, cybersécurité ou game development.',
             highlights: [
@@ -256,11 +256,11 @@ const SolarPortfolio = () => {
         div className = "container mx-auto flex justify-between items-center" >
         <
         h1 className = "text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500" >
-        Mon Portfolio <
+        <
         /h1> <
         nav className = "flex gap-4" >
         <
-        a href = "https://github.com"
+        a href = "https://github.com/AdamB378"
         target = "_blank"
         rel = "noopener noreferrer"
         className = "text-gray-400 hover:text-white transition-colors" >
@@ -268,7 +268,7 @@ const SolarPortfolio = () => {
         Github size = { 24 }
         /> < /
         a > <
-        a href = "https://linkedin.com"
+        a href = "https://linkedin.com/in/adam-belhadji-261478385"
         target = "_blank"
         rel = "noopener noreferrer"
         className = "text-gray-400 hover:text-white transition-colors" >
