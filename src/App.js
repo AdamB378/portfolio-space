@@ -95,13 +95,13 @@ const SolarPortfolio = () => {
                 '🎓 Formation MSC à EPITECH Strasbourg (2025-2028)',
                 '📚 CPGE PCSI-PC au lycée Fabert (2023-2025)',
                 '🌍 Bilingue anglais (Bac Américain)',
-                '🔍 En recherche d\'alternance 2025-2026',
+                '🔍 En recherche d\'alternance pour janvier 2026',
                 '💡 Passionné par l\'IA, cybersécurité et développement de jeux'
             ]
         },
         competences: {
             title: 'Mes Compétences',
-            subtitle: 'Stack Technologique & Méthodologies',
+            subtitle: 'Technologies & Savoir-Faire',
             description: 'Des compétences variées en développement logiciel, IA et méthodologies agiles',
             tags: ['Développement', 'IA', 'Jeux Vidéo', 'Web'],
             details: 'Compétences solides en programmation système, développement web et mobile, avec une spécialisation en intelligence artificielle et création de jeux vidéo.',
@@ -130,17 +130,17 @@ const SolarPortfolio = () => {
         },
         contact: {
             title: 'Contactez-Moi',
-            subtitle: 'En recherche d\'alternance 2025-2026',
+            subtitle: 'En recherche d\'alternance',
             description: 'Disponible pour une alternance selon vos besoins',
             tags: ['Alternance', 'Stage', 'Projets', 'Collaboration'],
-            details: 'Recherche activement une alternance pour l\'année 2025-2026 (rythme 4 semaines entreprise / 2 semaines école). Ouvert aux opportunités en développement logiciel, intelligence artificielle, cybersécurité ou game development.',
+            details: 'Recherche activement une alternance pour janvier 2026 (rythme 4 semaines entreprise / 2 semaines école). Ouvert aux opportunités en développement logiciel, intelligence artificielle, cybersécurité ou game development.',
             highlights: [
                 '✉️ Email: adam.belhadji@epitech.eu',
                 '💼 LinkedIn: linkedin.com/in/adam-belhadji-261478385',
                 '🐙 GitHub: github.com/AdamB378',
                 '📱 Tél: 07 83 13 83 47',
                 '📍 Mittelhausbergen, Alsace',
-                '⏰ Disponible dès septembre 2025'
+                '⏰ Disponible dès janvier 2026'
             ]
         }
     };
