@@ -88,10 +88,10 @@ const SolarPortfolio = () => {
     const content = {
         accueil: {
             title: 'Adam Belhadji',
-            subtitle: 'Développeur Full Stack',
-            description: 'Bienvenue dans mon écosystème numérique. Je conçois des architectures robustes et des interfaces immersives.',
-            tags: ['Architecture', 'Full Stack', 'Game Dev'],
-            details: 'Passionné par la convergence entre l\'intelligence artificielle, la cybersécurité et l\'expérience utilisateur. Je transforme des concepts abstraits en réalités fonctionnelles.',
+            subtitle: 'Informatique',
+            description: 'Bienvenue dans mon écosystème numérique. .',
+            tags: ['IA', 'Informatique', 'Cloud'],
+            details: 'Passionné par la convergence entre l\'intelligence artificielle et le Cloud. Je transforme des concepts abstraits en réalités fonctionnelles.',
             cta: 'Explorer le système'
         },
         apropos: {
@@ -99,10 +99,10 @@ const SolarPortfolio = () => {
             subtitle: 'De la théorie à la pratique',
             description: 'Une formation rigoureuse en CPGE alliée à la pédagogie par projet d\'Epitech.',
             tags: ['Rigueur', 'Adaptabilité', 'Bilingue'],
-            details: 'Mon background scientifique (Maths/Physique) me donne une approche analytique du code, tandis que mes projets actuels développent ma créativité technique.',
+            details: 'Mon background scientifique (Maths/Physique/Informatique) me donne une approche analytique du code, tandis que mes projets actuels développent ma créativité technique.',
             highlights: [
-                'Développeur autonome',
-                'Background scientifique (CPGE)',
+                'Développeur',
+                'Background scientifique/informatique (CPGE)',
                 'Bilingue Anglais (Natif/C2)',
                 'Expertise IA & Système'
             ]
@@ -110,14 +110,14 @@ const SolarPortfolio = () => {
         competences: {
             title: 'Arsenal Technique',
             subtitle: 'Technologies maîtrisées',
-            description: 'Une stack moderne orientée performance et scalabilité.',
+            description: '',
             tags: ['Système', 'Web', '3D'],
-            details: 'Je navigue entre le bas niveau (C/C++) pour la performance et le haut niveau (JS/Python) pour l\'agilité et l\'IA.',
+            details: 'Base de connaissance plus ou moins développer sur la quasi totalité des langages actuellement utilisé, allié a une capacité de comprendre et apprendre rapide.',
             highlights: [
-                'Core: C, C++, Python, TypeScript',
-                'Engine: Unity, Unreal, WebGL',
-                'Ops: Docker, Git, Linux CI/CD',
-                'AI: Computer Vision, NLP basics'
+                'Core: C, C++, Python, TypeScript..',
+                'Engine: Unity, Unreal, WebGL..',
+                'Ops: Docker, Git, Linux CI/CD..',
+                'AI: Computer Vision, NLP basics..'
             ]
         },
         projets: {
@@ -136,11 +136,11 @@ const SolarPortfolio = () => {
         contact: {
             title: 'Transmission',
             subtitle: 'Canaux de communication',
-            description: 'Ouvert aux opportunités de collaboration et d\'alternance.',
-            tags: ['Disponibilité Immédiate', 'Alsace/Remote'],
+            description: 'Ouvert aux opportunités.',
+            tags: ['Disponibilité Immédiate'],
             details: 'Prêt à intégrer votre équipe pour apporter une valeur ajoutée technique immédiate.',
             highlights: [
-                'adam.belhadji@epitech.eu',
+                'adam.belhadji57@gmail.com',
                 'linkedin.com/in/adam-belhadji',
                 'github.com/AdamB378',
                 '+33 7 83 13 83 47'
