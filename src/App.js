@@ -265,7 +265,6 @@ const SolarPortfolio = () => {
                             '--duration': planet.orbitDuration + 's',
                             zIndex: hoveredPlanet === planet.id ? 50 : 20
                         }
-                        as React.CSSProperties
                     } >
                     <
                     button onClick = {
