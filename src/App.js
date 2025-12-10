@@ -401,7 +401,7 @@ const SolarPortfolio = () => {
                     activePlanet === 'contact' && ( <
                         div className = "pt-4" >
                         <
-                        a href = "mailto:adam.belhadji@epitech.eu"
+                        a href = "mailto:adam.belhadji57@gmail.com"
                         className = "inline-flex items-center gap-3 px-6 py-3 bg-slate-100 text-black hover:bg-white transition-colors rounded-sm text-sm uppercase tracking-wider font-medium" >
                         <
                         span > Me contacter < /span> <
