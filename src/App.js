@@ -1,248 +1,204 @@
 import React, { useState, useEffect } from 'react';
-import { Home, User, Briefcase, Code, Mail, X, ExternalLink, Github, Linkedin } from 'lucide-react';
+import { Home, User, Briefcase, Code, Mail, X, ExternalLink, Github, Linkedin, ArrowRight } from 'lucide-react';
 
 const SolarPortfolio = () => {
     const [activePlanet, setActivePlanet] = useState(null);
     const [stars, setStars] = useState([]);
-    const [meteors, setMeteors] = useState([]);
     const [hoveredPlanet, setHoveredPlanet] = useState(null);
 
+    // Initialisation des étoiles
     useEffect(() => {
         const newStars = [];
-        for (let i = 0; i < 300; i++) {
+        for (let i = 0; i < 150; i++) { // Moins d'étoiles, mais plus variées
             newStars.push({
                 id: i,
                 x: Math.random() * 100,
                 y: Math.random() * 100,
-                size: Math.random() * 2.5 + 0.5,
-                duration: Math.random() * 4 + 2,
-                delay: Math.random() * 5
+                size: Math.random() * 2 + 0.5,
+                opacity: Math.random() * 0.5 + 0.1, // Plus subtil
+                duration: Math.random() * 10 + 10, // Scintillement plus lent
             });
         }
         setStars(newStars);
-
-        const meteorInterval = setInterval(() => {
-            const newMeteor = {
-                id: Date.now(),
-                x: Math.random() * 100,
-                y: -10,
-                size: Math.random() * 80 + 40
-            };
-            setMeteors(prev => [...prev.slice(-5), newMeteor]);
-        }, 2500);
-
-        return () => clearInterval(meteorInterval);
     }, []);
 
+    // Données visuelles repensées pour un look "Cinematic/Natural"
     const planets = [{
             id: 'accueil',
-            name: 'Soleil',
+            name: 'Le Noyau',
             icon: Home,
-            color: 'from-yellow-300 via-orange-400 to-orange-500',
-            size: 'w-28 h-28',
-            description: 'Centre de mon univers'
+            // Dégradé Or chaud/Blanc, plus "Interstellar" que jaune cartoon
+            color: 'bg-gradient-to-br from-amber-100 via-amber-400 to-orange-600',
+            shadow: 'shadow-[0_0_50px_rgba(251,191,36,0.4)]',
+            size: 'w-24 h-24 md:w-32 md:h-32',
+            orbitRadius: 0,
+            description: 'Centre'
         },
         {
             id: 'apropos',
-            name: 'Mercure',
+            name: 'Origine',
             icon: User,
-            color: 'from-gray-300 via-gray-400 to-gray-500',
-            size: 'w-14 h-14',
-            description: 'Mon parcours'
+            // Gris pierre / Lunaire
+            color: 'bg-gradient-to-br from-slate-200 via-slate-400 to-slate-600',
+            shadow: 'shadow-[0_0_20px_rgba(148,163,184,0.3)]',
+            size: 'w-10 h-10 md:w-14 md:h-14',
+            orbitRadius: 140,
+            orbitDuration: 25,
+            description: 'Parcours'
         },
         {
             id: 'competences',
-            name: 'Vénus',
+            name: 'Technique',
             icon: Code,
-            color: 'from-orange-200 via-orange-300 to-orange-400',
-            size: 'w-16 h-16',
-            description: 'Mes technologies'
+            // Cuivre / Vénus atmosphérique
+            color: 'bg-gradient-to-br from-orange-100 via-orange-300 to-red-400',
+            shadow: 'shadow-[0_0_25px_rgba(251,146,60,0.3)]',
+            size: 'w-12 h-12 md:w-16 md:h-16',
+            orbitRadius: 210,
+            orbitDuration: 35,
+            description: 'Stack'
         },
         {
             id: 'projets',
-            name: 'Terre',
+            name: 'Création',
             icon: Briefcase,
-            color: 'from-blue-400 via-blue-500 to-green-500',
-            size: 'w-16 h-16',
-            description: 'Mes réalisations'
+            // Océan profond / Terre nuit (pas de vert/bleu vif)
+            color: 'bg-gradient-to-br from-cyan-100 via-blue-500 to-indigo-900',
+            shadow: 'shadow-[0_0_30px_rgba(59,130,246,0.3)]',
+            size: 'w-14 h-14 md:w-20 md:h-20',
+            orbitRadius: 300,
+            orbitDuration: 45,
+            description: 'Projets'
         },
         {
             id: 'contact',
-            name: 'Mars',
+            name: 'Signal',
             icon: Mail,
-            color: 'from-red-400 via-red-500 to-red-600',
-            size: 'w-14 h-14',
-            description: 'Me contacter'
+            // Rouille / Mars réaliste
+            color: 'bg-gradient-to-br from-red-200 via-red-500 to-red-900',
+            shadow: 'shadow-[0_0_20px_rgba(239,68,68,0.3)]',
+            size: 'w-10 h-10 md:w-12 md:h-12',
+            orbitRadius: 390,
+            orbitDuration: 60,
+            description: 'Contact'
         }
     ];
 
     const content = {
         accueil: {
-            title: 'Bienvenue dans mon Univers',
-            subtitle: 'Étudiant en MSC Informatique à EPITECH Strasbourg',
-            description: 'Explorez mon système solaire personnel où chaque planète révèle une facette de mon parcours professionnel et académique.',
-            tags: ['C/C++', 'Python', 'JavaScript', 'Unity', 'Unreal Engine'],
-            details: 'Étudiant passionné par l\'IA, la cybersécurité et le développement de jeux vidéo. Je transforme des idées innovantes en solutions concrètes alliant technologie et créativité.',
-            cta: 'Commencer l\'exploration'
+            title: 'Adam Belhadji',
+            subtitle: 'Développeur Full Stack',
+            description: 'Bienvenue dans mon écosystème numérique. Je conçois des architectures robustes et des interfaces immersives.',
+            tags: ['Architecture', 'Full Stack', 'Game Dev'],
+            details: 'Passionné par la convergence entre l\'intelligence artificielle, la cybersécurité et l\'expérience utilisateur. Je transforme des concepts abstraits en réalités fonctionnelles.',
+            cta: 'Explorer le système'
         },
         apropos: {
-            title: 'À Propos de Moi',
-            subtitle: 'Étudiant & Développeur Passionné',
-            description: 'Un développeur créatif avec une passion pour l\'innovation technologique et l\'intelligence artificielle',
-            tags: ['EPITECH MSC 2025-2028', 'CPGE PC Fabert', 'Bilingue Anglais', 'Alternance'],
-            details: 'Actuellement en Master of Science à EPITECH Strasbourg (2025-2028), je recherche une alternance pour l\'année 2025-2026 (rythme : 4 semaines en entreprise / 2 en école). Issu d\'une classe préparatoire PCSI-PC au lycée Fabert, j\'allie rigueur scientifique et créativité technique.',
+            title: 'Mon Parcours',
+            subtitle: 'De la théorie à la pratique',
+            description: 'Une formation rigoureuse en CPGE alliée à la pédagogie par projet d\'Epitech.',
+            tags: ['Rigueur', 'Adaptabilité', 'Bilingue'],
+            details: 'Mon background scientifique (Maths/Physique) me donne une approche analytique du code, tandis que mes projets actuels développent ma créativité technique.',
             highlights: [
-                '🎓 Formation MSC à EPITECH Strasbourg (2025-2028)',
-                '📚 CPGE PCSI-PC au lycée Fabert (2023-2025)',
-                '🌍 Bilingue anglais (Bac Américain)',
-                '🔍 En recherche d\'alternance pour janvier 2026',
-                '💡 Passionné par l\'IA, cybersécurité et développement de jeux'
+                'Développeur autonome',
+                'Background scientifique (CPGE)',
+                'Bilingue Anglais (Natif/C2)',
+                'Expertise IA & Système'
             ]
         },
         competences: {
-            title: 'Mes Compétences',
-            subtitle: 'Technologies & Savoir-Faire',
-            description: 'Des compétences variées en développement logiciel, IA et méthodologies agiles',
-            tags: ['Développement', 'IA', 'Jeux Vidéo', 'Web'],
-            details: 'Compétences solides en programmation système, développement web et mobile, avec une spécialisation en intelligence artificielle et création de jeux vidéo.',
+            title: 'Arsenal Technique',
+            subtitle: 'Technologies maîtrisées',
+            description: 'Une stack moderne orientée performance et scalabilité.',
+            tags: ['Système', 'Web', '3D'],
+            details: 'Je navigue entre le bas niveau (C/C++) pour la performance et le haut niveau (JS/Python) pour l\'agilité et l\'IA.',
             highlights: [
-                '💻 Langages: C, C++, Python, JavaScript, HTML/CSS, SQL',
-                '🎮 Game Dev: Unity, Unreal Engine, Roblox',
-                '🛠️ Outils: Git/GitHub, Docker, Linux, VS Code',
-                '🔄 Méthodologies: Agile/Scrum, Pair Programming, CI/CD',
-                '🤖 Spécialités: IA reconnaissance vocale, APIs REST',
-                '🌐 Web: Sites interactifs, interfaces responsive'
+                'Core: C, C++, Python, TypeScript',
+                'Engine: Unity, Unreal, WebGL',
+                'Ops: Docker, Git, Linux CI/CD',
+                'AI: Computer Vision, NLP basics'
             ]
         },
         projets: {
-            title: 'Mes Projets',
-            subtitle: 'Réalisations & Expérimentations',
-            description: 'Des projets diversifiés mêlant créativité et expertise technique',
-            tags: ['Cloud', 'IA', 'Web', 'Innovation'],
-            details: 'Portfolio varié couvrant le développement de jeux vidéo, l\'intelligence artificielle et le web. Chaque projet est une opportunité d\'apprendre et de repousser mes limites.',
+            title: 'Réalisations',
+            subtitle: 'Projets sélectionnés',
+            description: 'Un aperçu de mes travaux en développement web, applicatif et jeu vidéo.',
+            tags: ['Innovation', 'R&D', 'Production'],
+            details: 'Chaque projet est une réponse concrète à une problématique complexe. Du moteur de jeu à l\'application web distribuée.',
             highlights: [
-                '🎮 Mini-jeux 2D/3D - Unity, Unreal Engine et Roblox (équipe & solo)',
-                '🌐 Sites web interactifs - Plateformes dynamiques avec gestion de contenu',
-                '🎤 IA reconnaissance vocale - Interprétation de commandes vocales',
-                '🚀 Projets innovants - Machine learning et vision par ordinateur',
-
+                'Moteurs de jeux & Expériences 3D',
+                'Plateformes Web Interactives',
+                'Modules de Reconnaissance Vocale (IA)',
+                'Algorithmes de Vision par Ordinateur'
             ]
         },
         contact: {
-            title: 'Contactez-Moi',
-            subtitle: 'En recherche d\'alternance',
-            description: 'Disponible pour une alternance selon vos besoins',
-            tags: ['Alternance', 'Stage', 'Projets', 'Collaboration'],
-            details: 'Recherche activement une alternance pour janvier 2026 (rythme 4 semaines entreprise / 2 semaines école). Ouvert aux opportunités en développement logiciel, intelligence artificielle, cybersécurité ou game development.',
+            title: 'Transmission',
+            subtitle: 'Canaux de communication',
+            description: 'Ouvert aux opportunités de collaboration et d\'alternance.',
+            tags: ['Disponibilité Immédiate', 'Alsace/Remote'],
+            details: 'Prêt à intégrer votre équipe pour apporter une valeur ajoutée technique immédiate.',
             highlights: [
-                '✉️ Email: adam.belhadji@epitech.eu',
-                '💼 LinkedIn: linkedin.com/in/adam-belhadji-261478385',
-                '🐙 GitHub: github.com/AdamB378',
-                '📱 Tél: 07 83 13 83 47',
-                '📍 Mittelhausbergen, Alsace',
-                '⏰ Disponible dès janvier 2026'
+                'adam.belhadji@epitech.eu',
+                'linkedin.com/in/adam-belhadji',
+                'github.com/AdamB378',
+                '+33 7 83 13 83 47'
             ]
         }
     };
 
     return ( <
-        div className = "min-h-screen bg-black text-white overflow-hidden relative" >
+        div className = "min-h-screen bg-[#0a0a0c] text-slate-200 overflow-hidden relative font-sans selection:bg-amber-500/30" > { /* NOISE OVERLAY - C'est ce qui enlève le côté "plastique" de l'IA */ } <
+        div className = "fixed inset-0 opacity-[0.03] pointer-events-none z-[1]"
+        style = {
+            { backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` } } >
+        <
+        /div>
+
         <
         style dangerouslySetInnerHTML = {
             {
                 __html: `
-          @keyframes twinkle {
-            0%, 100% { opacity: 0.2; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-          }
-          @keyframes orbit1 {
-            from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
-            to { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
-          }
-          @keyframes orbit2 {
-            from { transform: rotate(0deg) translateX(220px) rotate(0deg); }
-            to { transform: rotate(360deg) translateX(220px) rotate(-360deg); }
-          }
-          @keyframes orbit3 {
-            from { transform: rotate(0deg) translateX(290px) rotate(0deg); }
-            to { transform: rotate(360deg) translateX(290px) rotate(-360deg); }
-          }
-          @keyframes orbit4 {
-            from { transform: rotate(0deg) translateX(360px) rotate(0deg); }
-            to { transform: rotate(360deg) translateX(360px) rotate(-360deg); }
-          }
-          @keyframes meteorFall {
-            from { 
-              transform: translateY(0) translateX(0) rotate(45deg);
-              opacity: 1;
-            }
-            to { 
-              transform: translateY(150vh) translateX(150vh) rotate(45deg);
-              opacity: 0;
-            }
-          }
-          @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-          }
-          @keyframes slideUp {
-            from { transform: translateY(40px) scale(0.95); opacity: 0; }
-            to { transform: translateY(0) scale(1); opacity: 1; }
-          }
-          @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 80px rgba(251, 146, 60, 0.6), 0 0 120px rgba(250, 204, 21, 0.4); }
-            50% { box-shadow: 0 0 100px rgba(251, 146, 60, 0.8), 0 0 150px rgba(250, 204, 21, 0.6); }
-          }
-          @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-          }
-          .orbit-1 { animation: orbit1 25s linear infinite; }
-          .orbit-2 { animation: orbit2 35s linear infinite; }
-          .orbit-3 { animation: orbit3 45s linear infinite; }
-          .orbit-4 { animation: orbit4 55s linear infinite; }
-          .modal-backdrop { animation: fadeIn 0.3s ease-out; }
-          .modal-content { animation: slideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
-          .pulse-glow { animation: pulse 3s ease-in-out infinite; }
-          .float-animation { animation: float 3s ease-in-out infinite; }
-        `
+                @keyframes float {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-5px); }
+                }
+                @keyframes orbit {
+                    from { transform: rotate(0deg) translateX(var(--radius)) rotate(0deg); }
+                    to { transform: rotate(360deg) translateX(var(--radius)) rotate(-360deg); }
+                }
+                .orbit-anim {
+                    animation: orbit var(--duration) linear infinite;
+                }
+                .paused { animation-play-state: paused; }
+                
+                /* Typographie élégante */
+                .font-display { font-family: system-ui, -apple-system, sans-serif; letter-spacing: 0.1em; }
+                
+                /* Responsive Orbits */
+                @media (max-width: 768px) {
+                    .orbit-container { transform: scale(0.6); }
+                }
+            `
             }
         }
         />
 
-        <
-        div className = "fixed inset-0 overflow-hidden pointer-events-none z-0" > {
+        { /* FOND: Etoiles statiques et subtiles */ } <
+        div className = "fixed inset-0 z-0 pointer-events-none" > { /* Un léger dégradé de fond pour donner de la profondeur (vignette) */ } <
+        div className = "absolute inset-0 bg-radial-at-c from-transparent via-[#050505] to-black opacity-80" > < /div>
+
+        {
             stars.map(star => ( <
                 div key = { star.id }
-                className = "absolute bg-white rounded-full"
+                className = "absolute bg-white rounded-full mix-blend-screen"
                 style = {
                     {
                         left: star.x + '%',
                         top: star.y + '%',
                         width: star.size + 'px',
                         height: star.size + 'px',
-                        animation: 'twinkle ' + star.duration + 's ease-in-out ' + star.delay + 's infinite'
-                    }
-                }
-                />
-            ))
-        }
-
-        {
-            meteors.map(meteor => ( <
-                div key = { meteor.id }
-                className = "absolute"
-                style = {
-                    {
-                        left: meteor.x + '%',
-                        top: meteor.y + '%',
-                        width: meteor.size + 'px',
-                        height: '3px',
-                        background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 40%, rgba(59,130,246,0.8) 70%, rgba(147,51,234,0.5) 100%)',
-                        boxShadow: '0 0 15px rgba(59,130,246,1), 0 0 30px rgba(147,51,234,0.5)',
-                        transform: 'rotate(45deg)',
-                        animation: 'meteorFall 4s linear forwards',
-                        zIndex: 1
+                        opacity: star.opacity,
                     }
                 }
                 />
@@ -250,246 +206,226 @@ const SolarPortfolio = () => {
         } <
         /div>
 
+        { /* HEADER MINIMALISTE */ } <
+        header className = "relative z-20 p-6 md:p-8 flex justify-between items-center mix-blend-difference" >
         <
-        header className = "relative z-20 py-6 px-4" >
-        <
-        div className = "container mx-auto flex justify-between items-center" >
-        <
-        h1 className = "text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500" >
-        <
-        /h1> <
-        nav className = "flex gap-4" >
+        div className = "text-xs md:text-sm font-display uppercase tracking-[0.3em] text-slate-500" >
+        Portfolio v2 .0 <
+        /div> <
+        div className = "flex gap-6" >
         <
         a href = "https://github.com/AdamB378"
         target = "_blank"
-        rel = "noopener noreferrer"
-        className = "text-gray-400 hover:text-white transition-colors" >
+        rel = "noreferrer"
+        className = "text-slate-400 hover:text-white transition-colors duration-300" >
         <
-        Github size = { 24 }
-        /> < /
-        a > <
+        Github strokeWidth = { 1.5 }
+        size = { 20 }
+        /> <
+        /a> <
         a href = "https://linkedin.com/in/adam-belhadji-261478385"
         target = "_blank"
-        rel = "noopener noreferrer"
-        className = "text-gray-400 hover:text-white transition-colors" >
+        rel = "noreferrer"
+        className = "text-slate-400 hover:text-white transition-colors duration-300" >
         <
-        Linkedin size = { 24 }
-        /> < /
-        a > <
-        /nav> < /
-        div > <
+        Linkedin strokeWidth = { 1.5 }
+        size = { 20 }
+        /> <
+        /a> <
+        /div> <
         /header>
 
-        <
-        div className = "relative z-10 min-h-screen flex items-center justify-center py-8" >
-        <
-        div className = "relative w-full max-w-6xl h-[750px] flex items-center justify-center px-4" >
-        <
-        button onClick = {
-            () => setActivePlanet('accueil')
-        }
-        onMouseEnter = {
-            () => setHoveredPlanet('accueil')
-        }
-        onMouseLeave = {
-            () => setHoveredPlanet(null)
-        }
-        className = { 'relative ' + planets[0].size + ' bg-gradient-to-br ' + planets[0].color + ' rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-500 pulse-glow cursor-pointer z-30' } >
-        <
-        Home className = "text-white drop-shadow-lg"
-        size = { 44 }
-        /> < /
-        button >
+        { /* MAIN SCENE */ } <
+        div className = "relative z-10 h-[80vh] flex items-center justify-center orbit-container" >
 
-        {
-            hoveredPlanet === 'accueil' && ( <
-                div className = "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mt-24 bg-slate-900 bg-opacity-90 px-4 py-2 rounded-lg text-sm float-animation pointer-events-none z-40" > { planets[0].description } <
-                /div>
-            )
-        }
-
-        {
-            planets.slice(1).map((planet, index) => {
-                const PlanetIcon = planet.icon;
-                const orbitClass = 'orbit-' + (index + 1);
-
-                return ( <
-                    React.Fragment key = { planet.id } >
-                    <
-                    button onClick = {
-                        () => setActivePlanet(planet.id)
-                    }
-                    onMouseEnter = {
-                        () => setHoveredPlanet(planet.id)
-                    }
-                    onMouseLeave = {
-                        () => setHoveredPlanet(null)
-                    }
-                    className = { 'absolute ' + planet.size + ' bg-gradient-to-br ' + planet.color + ' rounded-full flex items-center justify-center shadow-2xl hover:scale-125 transition-all duration-500 cursor-pointer z-30 ' + orbitClass }
-                    style = {
-                        {
-                            boxShadow: '0 0 20px rgba(255,255,255,0.3), inset 0 -2px 8px rgba(0,0,0,0.4)'
-                        }
-                    } >
-                    <
-                    PlanetIcon className = "text-white drop-shadow-md"
-                    size = { 22 }
-                    /> < /
-                    button >
-
-                    {
-                        hoveredPlanet === planet.id && ( <
-                            div className = { 'absolute ' + orbitClass + ' pointer-events-none z-40' }
-                            style = {
-                                { marginTop: '60px' }
-                            } >
-                            <
-                            div className = "bg-slate-900 bg-opacity-90 px-4 py-2 rounded-lg text-sm whitespace-nowrap" > { planet.description } <
-                            /div> < /
-                            div >
-                        )
-                    } <
-                    /React.Fragment>
-                );
-            })
-        }
-
-        {
-            [300, 440, 580, 720].map((size, i) => ( <
-                div key = { i }
-                className = "absolute rounded-full border border-blue-500 opacity-10"
+        { /* ORBIT RINGS (Fines et élégantes) */ } {
+            planets.slice(1).map((planet) => ( <
+                div key = { `ring-${planet.id}` }
+                className = "absolute rounded-full border border-white/[0.03]"
                 style = {
-                    { width: size + 'px', height: size + 'px' }
+                    {
+                        width: planet.orbitRadius * 2 + 'px',
+                        height: planet.orbitRadius * 2 + 'px'
+                    }
                 }
                 />
             ))
-        } <
-        /div> < /
-        div >
+        }
 
-        {
-            activePlanet && ( <
-                div className = "fixed inset-0 bg-black bg-opacity-85 backdrop-blur-md flex items-center justify-center z-50 modal-backdrop px-4"
-                onClick = {
-                    () => setActivePlanet(null)
-                } >
-                <
-                div className = "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-8 md:p-12 max-w-4xl w-full shadow-2xl border border-slate-700 relative modal-content overflow-hidden max-h-[90vh] overflow-y-auto"
-                onClick = {
-                    (e) => e.stopPropagation()
-                } >
-                <
-                div className = "absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" > < /div>
+        { /* PLANETS */ } {
+            planets.map((planet, index) => {
+                const isSun = index === 0;
 
-                <
-                button onClick = {
-                    () => setActivePlanet(null)
-                }
-                className = "absolute top-6 right-6 text-gray-400 hover:text-white transition-all hover:rotate-90 duration-300 z-10" >
-                <
-                X size = { 32 }
-                /> < /
-                button >
-
-                <
-                div className = "flex items-center gap-5 mb-8" > {
-                    planets.find(p => p.id === activePlanet) && ( <
-                        >
+                return ( <
+                    div key = { planet.id }
+                    className = { `absolute flex items-center justify-center ${!isSun ? 'orbit-anim' : ''} group` }
+                    style = {
                         {
-                            (() => {
-                                const planet = planets.find(p => p.id === activePlanet);
-                                const Icon = planet.icon;
-                                return ( <
-                                    div className = { 'w-24 h-24 rounded-full flex items-center justify-center bg-gradient-to-br ' + planet.color + ' shadow-2xl' } >
-                                    <
-                                    Icon className = "text-white"
-                                    size = { 42 }
-                                    /> < /
-                                    div >
-                                );
-                            })()
-                        } <
-                        div >
-                        <
-                        h2 className = "text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400" > { planets.find(p => p.id === activePlanet).name } <
-                        /h2> <
-                        p className = "text-gray-400 text-base mt-2" > { content[activePlanet].subtitle } < /p> < /
-                        div > <
-                        />
-                    )
-                } <
+                            '--radius': planet.orbitRadius + 'px',
+                            '--duration': planet.orbitDuration + 's',
+                            zIndex: hoveredPlanet === planet.id ? 50 : 20
+                        }
+                        as React.CSSProperties
+                    } >
+                    <
+                    button onClick = {
+                        () => setActivePlanet(planet.id) }
+                    onMouseEnter = {
+                        () => setHoveredPlanet(planet.id) }
+                    onMouseLeave = {
+                        () => setHoveredPlanet(null) }
+                    className = { `relative ${planet.size} rounded-full transition-all duration-700 ease-out cursor-pointer
+                                    ${planet.color} ${planet.shadow}
+                                    ${hoveredPlanet === planet.id ? 'scale-110 brightness-110' : 'scale-100'}
+                                    ${isSun ? 'animate-pulse-slow' : ''}
+                                ` } >
+                    { /* Surface Texture Overlay (CSS Radial) */ } <
+                    div className = "absolute inset-0 rounded-full bg-gradient-to-t from-black/40 to-transparent opacity-60" > < /div> <
+                    div className = "absolute inset-0 rounded-full shadow-[inset_0_2px_15px_rgba(255,255,255,0.2)]" > < /div>
+
+                    { /* Icone minimaliste (opacité réduite pour laisser vivre la planète) */ } <
+                    div className = "absolute inset-0 flex items-center justify-center text-white/90 drop-shadow-md" >
+                    <
+                    planet.icon strokeWidth = { 1.5 }
+                    size = { isSun ? 32 : 18 }
+                    className = { isSun ? "text-amber-900" : "" }
+                    /> <
+                    /div> <
+                    /button>
+
+                    { /* Label Flottant (Au survol) */ } <
+                    div className = { `absolute pointer-events-none transition-all duration-300 transform 
+                                ${hoveredPlanet === planet.id ? 'opacity-100 translate-y-12 md:translate-y-16 scale-100' : 'opacity-0 translate-y-8 scale-90'}
+                            ` } >
+                    <
+                    div className = "flex flex-col items-center" >
+                    <
+                    div className = "h-4 w-[1px] bg-slate-500/50 mb-2" > < /div> <
+                    span className = "text-xs uppercase tracking-[0.2em] text-slate-300 bg-black/50 backdrop-blur-md px-3 py-1 border border-white/10 rounded-full" > { planet.name } <
+                    /span> <
+                    /div> <
+                    /div> <
+                    /div>
+                );
+            })
+        } <
+        /div>
+
+        { /* MODALE (Style "Glass Card" sophistiqué) */ } {
+            activePlanet && ( <
+                div className = "fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
+                onClick = {
+                    () => setActivePlanet(null) } >
+                <
+                div className = "absolute inset-0 bg-[#050505]/80 backdrop-blur-sm transition-opacity duration-500" > < /div>
+
+                <
+                div className = "relative w-full max-w-3xl bg-[#111111]/90 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300"
+                onClick = {
+                    (e) => e.stopPropagation() } >
+                { /* Noise Texture sur la carte aussi */ } <
+                div className = "absolute inset-0 opacity-[0.05] pointer-events-none z-[0]"
+                style = {
+                    { backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` } } >
+                <
                 /div>
 
-                <
-                h1 className = "text-3xl md:text-4xl font-bold mb-4 text-white" > { content[activePlanet].title } <
-                /h1>
+                { /* Contenu */ } <
+                div className = "relative z-10 flex flex-col md:flex-row h-full max-h-[80vh]" >
 
+                { /* Colonne Gauche (Visuel + Titre) */ } <
+                div className = "w-full md:w-1/3 bg-white/[0.02] border-b md:border-b-0 md:border-r border-white/10 p-8 flex flex-col justify-between" >
                 <
-                p className = "text-lg md:text-xl mb-6 text-gray-300 font-medium leading-relaxed" > { content[activePlanet].description } <
-                /p>
-
+                div >
                 <
-                div className = "flex flex-wrap gap-2 mb-8" > {
+                div className = "text-xs font-display uppercase tracking-widest text-slate-500 mb-2" > { planets.find(p => p.id === activePlanet).name } <
+                /div> <
+                h2 className = "text-3xl font-light text-white mb-4" > { content[activePlanet].title } <
+                /h2> <
+                div className = "w-12 h-[1px] bg-amber-500/50 mb-6" > < /div> <
+                p className = "text-sm text-slate-400 leading-relaxed font-light" > { content[activePlanet].description } <
+                /p> <
+                /div> <
+                div className = "mt-8 flex flex-wrap gap-2" > {
                     content[activePlanet].tags.map((tag, i) => ( <
                         span key = { i }
-                        className = "px-4 py-2 bg-blue-500 bg-opacity-20 text-blue-300 rounded-full text-sm border border-blue-500 border-opacity-30" > { tag } <
+                        className = "px-2 py-1 text-[10px] uppercase tracking-wider text-slate-300 border border-slate-700 rounded-sm" > { tag } <
                         /span>
                     ))
                 } <
+                /div> <
                 /div>
 
+                { /* Colonne Droite (Détails) */ } <
+                div className = "w-full md:w-2/3 p-8 overflow-y-auto" >
                 <
-                div className = "bg-slate-800 bg-opacity-60 rounded-2xl p-6 md:p-8 mb-6 border border-slate-700" >
+                button onClick = {
+                    () => setActivePlanet(null) }
+                className = "absolute top-6 right-6 p-2 text-slate-500 hover:text-white transition-colors rounded-full hover:bg-white/5" >
                 <
-                p className = "text-base md:text-lg text-gray-300 leading-relaxed mb-6" > { content[activePlanet].details } <
-                /p>
+                X strokeWidth = { 1 }
+                size = { 24 }
+                /> <
+                /button>
+
+                <
+                div className = "space-y-8 mt-4 md:mt-0" >
+                <
+                div >
+                <
+                h3 className = "text-sm font-display uppercase tracking-widest text-slate-500 mb-4" > Détails < /h3> <
+                p className = "text-slate-300 font-light leading-relaxed" > { content[activePlanet].details } <
+                /p> <
+                /div>
 
                 {
                     content[activePlanet].highlights && ( <
-                        div className = "space-y-3" > {
+                        div >
+                        <
+                        h3 className = "text-sm font-display uppercase tracking-widest text-slate-500 mb-4" > Points Clés < /h3> <
+                        ul className = "grid grid-cols-1 gap-3" > {
                             content[activePlanet].highlights.map((highlight, i) => ( <
-                                div key = { i }
-                                className = "flex items-start gap-3 text-sm md:text-base text-gray-300" >
+                                li key = { i }
+                                className = "flex items-center gap-3 text-slate-300 font-light" >
                                 <
-                                div className = "w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 mt-2 flex-shrink-0" > < /div> <
-                                span > { highlight } < /span> < /
-                                div >
+                                span className = "w-1.5 h-1.5 bg-amber-500 rounded-full" > < /span> { highlight } <
+                                /li>
                             ))
                         } <
+                        /ul> <
                         /div>
                     )
-                } <
-                /div>
+                }
 
                 {
                     activePlanet === 'contact' && ( <
-                        div className = "flex flex-wrap gap-4" >
+                        div className = "pt-4" >
                         <
-                        button className = "flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg hover:scale-105 transition-transform" >
+                        a href = "mailto:adam.belhadji@epitech.eu"
+                        className = "inline-flex items-center gap-3 px-6 py-3 bg-slate-100 text-black hover:bg-white transition-colors rounded-sm text-sm uppercase tracking-wider font-medium" >
                         <
-                        Mail size = { 20 }
+                        span > Me contacter < /span> <
+                        ArrowRight size = { 16 }
                         /> <
-                        span > Envoyer un email < /span> < /
-                        button > <
-                        button className = "flex items-center gap-2 px-6 py-3 bg-slate-700 rounded-lg hover:bg-slate-600 transition-colors" >
-                        <
-                        ExternalLink size = { 20 }
-                        /> <
-                        span > Voir mon CV < /span> < /
-                        button > <
+                        /a> <
                         /div>
                     )
                 } <
-                /div> < /
-                div >
+                /div> <
+                /div> <
+                /div> <
+                /div> <
+                /div>
             )
         }
 
         <
-        div className = "fixed bottom-8 left-1/2 transform -translate-x-1/2 text-center z-20 pointer-events-none" >
+        div className = "fixed bottom-6 w-full text-center pointer-events-none z-20" >
         <
-        p className = "text-gray-500 text-sm md:text-base" > Survolez et cliquez sur les planètes pour explorer mon univers < /p> < /
-        div > <
+        p className = "text-[10px] uppercase tracking-[0.3em] text-slate-600" >
+        Système de Navigation v2 <
+        /p> <
+        /div> <
         /div>
     );
 };
