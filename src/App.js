@@ -6,6 +6,7 @@ const SolarPortfolio = () => {
     const [stars, setStars] = useState([]);
     const [hoveredPlanet, setHoveredPlanet] = useState(null);
 
+
     // Initialisation des étoiles
     useEffect(() => {
         const newStars = [];
